@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tngtech.webapp</groupId>
-  <artifactId>easy-restlet</artifactId>
+  <artifactId>easy-rest</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>easy Maven Webapp</name>
@@ -10,7 +10,7 @@
   <properties>
     <restlet.version>2.0.9</restlet.version>
     <spring.version>3.0.6.RELEASE</spring.version>
-    <easy.restlet.server.contextpath>easyRestlet</easy.restlet.server.contextpath>
+    <easy.rest.server.contextpath>easyRest</easy.rest.server.contextpath>
   </properties>
 
   <dependencies>
@@ -50,19 +50,22 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
+
     <dependency>
-      <groupId>org.restlet.jee</groupId>
-      <artifactId>org.restlet.ext.servlet</artifactId>
-      <version>${restlet.version}</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <scope>provided</scope>
+      <version>2.5</version>
     </dependency>
+
     <dependency>
-      <groupId>org.restlet.jee</groupId>
-      <artifactId>org.restlet.ext.spring</artifactId>
-      <version>${restlet.version}</version>
-    </dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.0</version>
+		</dependency>
   </dependencies>
   <build>
-    <finalName>easy-restlet</finalName>
+    <finalName>easy-rest</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -78,7 +81,7 @@
         <artifactId>maven-jetty-plugin</artifactId>
         <version>6.1.25</version>
         <configuration>
-          <contextPath>${easy.restlet.server.contextpath}</contextPath>
+          <contextPath>${easy.rest.server.contextpath}</contextPath>
           <scanIntervalSeconds>10</scanIntervalSeconds>
           <webXml>${project.build.directory}/${project.build.finalName}/WEB-INF/web.xml</webXml>
         </configuration>
